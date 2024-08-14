@@ -1,0 +1,10 @@
+// Update this method in BookController.java
+
+@PostMapping
+public ResponseEntity<Book> createBook(@RequestBody Book book) {
+    Book savedBook = bookRepository.save(book);
+    return ResponseEntity
+            .created(URI.create("/books/" + savedBook.getId()))
+            .header("Custom-Header", "CustomValue")
+            .body(savedBook);
+}
